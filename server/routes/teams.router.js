@@ -20,7 +20,7 @@ const API_KEY = process.env.API_KEY;
 
 // GET route to select team data from Sportradar.us API after login
 router.get('/', rejectUnauthenticated, (req, res) => {
-
+    let arrayIn = [];
     // let queryText = `SELECT * FROM "teams" WHERE `;
     // pool.query(queryText).then((result) => {
     //     console.log(result.rows);
@@ -29,10 +29,15 @@ router.get('/', rejectUnauthenticated, (req, res) => {
                 method: `GET`,
                 url: `${BASE_URL}tournaments/sr:tournament:17/info.json?api_key=${API_KEY}`
             }).then((response) => {
-                res.send(response.data);
+                // console.log(response.data.groups.teams);
+                arrayIn = response.data.groups;
+                for(let i in arrayIn) {
+                    console.log(`Array In: ${arrayIn[i]}`);
+                }
+                res.send(response.data.groups);
             }).catch((axiosError) => {
                 // console log and client error message for axios request
-                console.log(`Error in axios GET request for team data: ${error}`);
+                console.log(`Error in axios GET request for team data: ${axiosError}`);
                 res.sendStatus(500);
             }); 
     // }).catch((poolError) => {

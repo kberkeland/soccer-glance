@@ -12,7 +12,10 @@ class InfoPage extends Component {
   render() {
     return (
       <div>
-        {JSON.stringify(this.props.reduxStore)}
+        {JSON.stringify(this.props.reduxStore.teams)}
+        {this.props.reduxStore.teams.map((teams, i) => (
+                            <li key={i}>{teams.name}</li>
+        ))}
       </div>
     )
   }
