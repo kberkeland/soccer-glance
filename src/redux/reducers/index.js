@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import errors from './errorsReducer';
 import loginMode from './loginModeReducer';
 import user from './userReducer';
+import leagues from './leaguesReducer.js';
 import teams from './teamsReducer.js';
 
 // rootReducer is the primary reducer for our entire project
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   loginMode, // will have a value of 'login' or 'registration' to control which screen is shown
   user, // will have an id and username if someone is logged in
+  leagues, // display available leagues for a user to select
   teams, // display of avaliable teams
 });
 

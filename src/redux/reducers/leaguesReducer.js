@@ -1,5 +1,5 @@
-const teamsReducer = (state = [], action) => {
-    if( action.type === 'SET_TEAMS' ) {
+const leaguesReducer = (state = [], action) => {
+    if( action.type === 'SET_LEAGUES') {
         // let newArray = [];
         // for(let test of action.payload) {
         //     newArray.push(test.teams);
@@ -14,4 +14,4 @@ const teamsReducer = (state = [], action) => {
         return state;
 };
   
-export default teamsReducer;
+export default leaguesReducer;
