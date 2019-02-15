@@ -3,6 +3,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* teamsSaga() {
     yield takeLatest('FETCH_TEAMS', findTeams);
+    yield takeLatest('FETCH_TEAM_STATS', findTeamStats);
     yield takeLatest('ADD_USER_TEAM', addUserTeam);
 }
 
@@ -27,6 +28,19 @@ function* findTeams() {
     } catch (error) {
         // error message when trying to get team list
         console.log(`Get request failed for teams: ${error}`);
+    }
+}
+
+// worker Saga: will be fired on "FETCH_TEAM_STATS" actions
+function* findTeamStats() {
+    try {
+        // call to the database for team data
+        const response = yield axios.get('api/teams/stats');
+        const action = {type: 'SET_TEAM_STATS', payload: response.data};
+        yield put(action);
+    } catch (error) {
+        // error message when trying to get team list
+        console.log(`Get request failed for stats: ${error}`);
     }
 }
 
